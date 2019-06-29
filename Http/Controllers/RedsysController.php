@@ -123,7 +123,7 @@ class RedsysController extends Controller
                     $reservation=$success_process['reservation'];
                     $content=['order'=>intval($parameters['Ds_Order']),'reservation'=>$reservation];
 
-                    $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $reservation->email,'subject' => 'Confirmación de pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de pago de orden','intro'=>'Felicidades su reservación fue exitosa','content'=>$content,)]);
+                    $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $reservation->customer->email,'subject' => 'Confirmación de pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de pago de orden','intro'=>'Felicidades su reservación fue exitosa','content'=>$content,)]);
                     $confimail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $email_to,'subject' => 'Confirmación de Nueva Orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de Nueva Orden','intro'=>'Nueva reservación Realizada','content'=>$content,)]);
                 }else{
 
@@ -148,7 +148,7 @@ class RedsysController extends Controller
                     $reservation=$success_process['reservation'];
                     $content=['order'=>intval($parameters['Ds_Order'])];
 
-                    emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->email],'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                    emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->customer->email],'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
                 }else{
 
                     $success_process = executtePostOrderGiftcard(intval($parameters['Ds_Order']),4,$request);
@@ -196,7 +196,7 @@ class RedsysController extends Controller
                     $reservation=$success_process['reservation'];
                     $content=['order'=>intval($parameters['Ds_Order'])];
 
-                   $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->email],'subject' => 'Error en Pago de orden','sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                   $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->customer->email],'subject' => 'Error en Pago de orden','sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
                     //dd($mail);
                 }else{
 
@@ -229,7 +229,7 @@ class RedsysController extends Controller
                         'reservation' => $reservation
                     ];
 
-                    $mail = emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->email],'subject' => 'Error en Pago de orden','sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                    $mail = emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => [$reservation->customer->email],'subject' => 'Error en Pago de orden','sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
 
                 }else{
 

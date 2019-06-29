@@ -313,7 +313,7 @@ class PublicController extends BasePublicController
          * Ya que se integran multiples precios para 1 evento.
          */
 
-        $price = 70; // Cambio solicitado por el cliente
+        //$price = 70; // Cambio solicitado por el cliente
 
         $paymentID = $request->paymentID;
 

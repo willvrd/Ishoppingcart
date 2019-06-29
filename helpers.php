@@ -53,9 +53,9 @@ if (! function_exists('executtePostOrder')){
             }
         }
 
-            $reservationDate = $reservation->date;
+            $reservationDate = $reservation->start_date;
             $updateReservation = Reservation::where("id",$reservationID)
-                ->update(['status' => $status, 'date' =>$reservationDate ]);
+                ->update(['status' => $status, 'start_date' =>$reservationDate ]);
 
 
 

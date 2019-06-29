@@ -27,7 +27,7 @@
                         @if(isset($data['content']['reservation']))
                             @php $reservation=$data['content']['reservation'] @endphp
 
-                            {{$reservation->fullname or ''}}
+                            {{$reservation->customer->first_name}} {{$reservation->customer->last_name}}
                             
                         @endif
                     </div>
@@ -46,17 +46,17 @@
                             {!! $reservation->description !!}
                             </div>
 
-                            @if(isset($reservation->cantPer) && !empty($reservation->cantPer))
+                            @if(isset($reservation->people) && !empty($reservation->people))
                             <div style="margin-bottom: 5px"><span
                                 style="color: #484848;">Cantidad Personas:</span>
-                                {!! $reservation->cantPer!!}
+                                {!! $reservation->people !!}
                             </div>
                             @endif
 
-                            @if(isset($reservation->mode) && !empty($reservation->mode))
+                            @if(isset($reservation->plan) && !empty($reservation->plan))
                             <div style="margin-bottom: 5px"><span
                                 style="color: #484848;">Modo:</span>
-                                {!! $reservation->mode!!}
+                                {!! $reservation->plan!!}
                             </div>
                             @endif
 

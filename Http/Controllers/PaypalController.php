@@ -84,7 +84,7 @@ class PaypalController extends Controller
                     $success_process = executtePostOrder($response->transactions[0]->invoice_number,1,$request);
                     $reservation=$success_process['reservation'];
                     $content=['order'=>$response->transactions[0]->invoice_number,'reservation'=>$reservation];
-                    $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $reservation->email,'subject' => 'Confirmación de pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de pago de orden','intro'=>'Felicidades su reservación fue exitosa','content'=>$content,)]);
+                    $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $reservation->customer->email,'subject' => 'Confirmación de pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de pago de orden','intro'=>'Felicidades su reservación fue exitosa','content'=>$content,)]);
                     $mail= emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.success_order','email_to' => $email_to,'subject' => 'Confirmación de pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Confirmación de pago de orden','intro'=>'Confirmación de Nueva Orden','content'=>$content,)]);
 
                 }else{
@@ -108,7 +108,7 @@ class PaypalController extends Controller
                     $success_process = executtePostOrder($response->transactions[0]->invoice_number,4,$request);
                     $reservation=$success_process['reservation'];
                     $content=['order'=>$response->transactions[0]->invoice_number];
-                    emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => $reservation->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                    emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => $reservation->customer->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
 
                 }else{
 
@@ -133,7 +133,7 @@ class PaypalController extends Controller
                 $reservation=$success_process['reservation'];
                 $content=['order'=>$response->transactions[0]->invoice_number];
 
-                emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' =>$reservation->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' =>$reservation->customer->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
             
             }else{
 
@@ -167,7 +167,7 @@ class PaypalController extends Controller
                 $success_process = executtePostOrder($orderID,4,$request);
                 $reservation=$success_process['reservation'];
                 $content=['order'=>$orderID];
-                emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => $reservation->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
+                emailSend(['email_from'=>[$email_from],'theme' => 'ishoppingcart::email.error_order','email_to' => $reservation->customer->email,'subject' => 'Error en Pago de orden', 'sender'=>$sender, 'data' => array('title' => 'Error en Pago de orden','intro'=>'Ups... Algo ha salido mal','content'=>$content,)]);
             }else{
 
                 $success_process = executtePostOrderGiftcard($orderID,4,$request);

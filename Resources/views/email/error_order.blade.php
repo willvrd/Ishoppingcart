@@ -28,7 +28,7 @@
                         @if(isset($data['content']['reservation']))
                             @php $reservation=$data['content']['reservation']; @endphp
 
-                            {{$reservation->fullname or ''}}
+                            {{$reservation->customer->first_name}} {{$reservation->customer->last_name}}
                             
                         @endif
                         
